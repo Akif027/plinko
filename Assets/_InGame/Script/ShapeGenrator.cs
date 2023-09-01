@@ -20,7 +20,7 @@ public class ShapeGenrator : MonoBehaviour
         float halfWidth = rowCount * (triangleSize * 0.5f + spacing * 0.5f);
         float height = Mathf.Sqrt(3) * triangleSize;
 
-        for (int row = 0; row < rowCount-2; row++)
+        for (int row = 0; row < rowCount-2 ; row++)
         {
             int trianglesInRow = rowCount - row;
 
