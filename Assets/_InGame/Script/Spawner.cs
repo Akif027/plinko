@@ -41,10 +41,19 @@ public class Spawner : MonoBehaviour
                 StartCoroutine(SpawnManualCoroutine());
             }
         }
-     
+
+        if (AmountManager.instance.Broke)
+        {
+            PlayButton.interactable = false;
+        }
+        else
+        {
+            PlayButton.interactable = true;
+        }
 
     }
 
+ 
     private IEnumerator SpawnManualCoroutine()
     {
    

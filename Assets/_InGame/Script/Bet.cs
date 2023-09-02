@@ -5,7 +5,7 @@ using UnityEngine.XR;
 
 public class Bet : MonoBehaviour
 {
-
+    private int ColCount =0;
     private void Start()
     {
         gameObject.SetActive(true);
@@ -14,17 +14,27 @@ public class Bet : MonoBehaviour
     {
         if (collision.CompareTag("Basket"))
         {
+            ColCount++;
             gameObject.SetActive(false);
-
-            GetTheName(collision.gameObject.name);
-            if (AmountManager.instance.CurrentAmount <=0)
+            if (ColCount <=1)
             {
-                AmountManager.instance.Broke = true;
+                GetTheName(collision.gameObject.name);
+                if (AmountManager.instance.CurrentAmount <= 0)
+                {
+                    AmountManager.instance.Broke = true;
+                }
+                AmountManager.instance.BetAmount = 100;
+              
             }
-            AmountManager.instance.BetAmount = 100;
+            ColCount = 0;
         }
     }
 
+  /*  IEnumerator Wait()
+    {
+        yield return new WaitForSeconds(2);
+        ColCount = 0;
+    }*/
     private void GetTheName(string Name)
     {
         Debug.Log(Name);
