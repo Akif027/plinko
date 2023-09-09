@@ -18,13 +18,17 @@ public class Spawner : MonoBehaviour
     public Toggle Auto, Manual;
 
     public Button PlayButton;
+
+   
     public void StartSpawning()
     {
+
         if (AmountManager.instance.Canplay)
         {
             if (Auto.isOn && !Manual.isOn)
             {
                 Debug.Log(Auto.isOn);
+                
                 StartCoroutine(SpawnCoroutine());
             }
             else if (Manual.isOn && !Auto.isOn)
@@ -56,7 +60,7 @@ public class Spawner : MonoBehaviour
  
     private IEnumerator SpawnManualCoroutine()
     {
-   
+     
             yield return new WaitForSeconds(spawnInterval);
         PlayButton.interactable = true;
 

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -37,7 +38,8 @@ public class Bet : MonoBehaviour
     }*/
     private void GetTheName(string Name)
     {
-        Debug.Log(Name);
+        int myInt = int.Parse(Name);
+        Debug.Log(myInt);
         switch (Name)
         {
             case "5.6": AmountManager.instance.BetAmount *= 5.6f;

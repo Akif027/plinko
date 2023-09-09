@@ -28,7 +28,6 @@ public class AmountManager : MonoBehaviour
     [HideInInspector]
     public bool Broke = false; //if the player is broke
 
-    
     private void Start()
     {
         instance = this;
@@ -154,6 +153,7 @@ public class AmountManager : MonoBehaviour
     {
         if (Canplay)
         {
+
             isRunning = true;
             startTime = Time.time;
         }
