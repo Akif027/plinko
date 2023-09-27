@@ -15,7 +15,7 @@ public class Spawner : MonoBehaviour
     public float maxX;
     public float spawnInterval;
 
-    public Toggle Auto, Manual;
+    //public Toggle Auto, Manual;
 
     public Button PlayButton;
 
@@ -23,17 +23,17 @@ public class Spawner : MonoBehaviour
     public void StartSpawning()
     {
 
-        if (AmountManager.instance.Canplay)
-        {
-            if (Auto.isOn && !Manual.isOn)
-            {
-                Debug.Log(Auto.isOn);
+        //if (AmountManager.instance.Canplay)
+        //{
+            //if (Auto.isOn && !Manual.isOn)
+            //{
+              //  Debug.Log(Auto.isOn);
                 
-                StartCoroutine(SpawnCoroutine());
-            }
-            else if (Manual.isOn && !Auto.isOn)
-            {
-                Debug.Log(Manual.isOn);
+               // StartCoroutine(SpawnCoroutine());
+            //}
+           // else if (Manual.isOn && !Auto.isOn)
+           // {
+                //Debug.Log(Manual.isOn);
                 float randomX = Random.Range(minX, maxX);
                 GameObject projectile = Objectpool.poolSharedInstance.GetpoolObject();
                 if (projectile != null)
@@ -43,17 +43,17 @@ public class Spawner : MonoBehaviour
                 }
                 PlayButton.interactable = false;
                 StartCoroutine(SpawnManualCoroutine());
-            }
-        }
+           // }
+        //}
 
-        if (AmountManager.instance.Broke)
+      /*  if (AmountManager.instance.Broke)
         {
             PlayButton.interactable = false;
         }
         else
         {
             PlayButton.interactable = true;
-        }
+        }*/
 
     }
 
@@ -65,7 +65,7 @@ public class Spawner : MonoBehaviour
         PlayButton.interactable = true;
 
     }
-    private IEnumerator SpawnCoroutine()
+   /* private IEnumerator SpawnCoroutine()
     {
      
             while (true && Auto.isOn && !Manual.isOn)
@@ -90,5 +90,5 @@ public class Spawner : MonoBehaviour
             }
       
       
-    }
+    }*/
 }
