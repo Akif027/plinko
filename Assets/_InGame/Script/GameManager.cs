@@ -14,6 +14,11 @@ public class GameManager : MonoBehaviour
 
     public ShapeGenrator sg;
 
+    [Header("Play")]
+    public float playDuration = 0.5f;
+    public float leftX;
+    public float rightX;
+
     [Header("Buttons")]
     public Button[] buttons;
     public TMP_Dropdown[] dropdowns;
@@ -25,6 +30,8 @@ public class GameManager : MonoBehaviour
     public Vector3 punchScaleAmount = new Vector3(0.1f, 0.1f, 0.1f); // Amount to "punch" the scale by
     public float winDuration = 0.5f; // Duration of the punch animation
     public GameObject mainCamera;
+    public Image winnerImage;
+    public TMP_Text winnerText;
 
     [Header("ButtonClick")]
     public Vector3 _intialScale;
@@ -129,6 +136,31 @@ public class GameManager : MonoBehaviour
             buttons[i].interactable = true;
             dropdowns[i].interactable = true;
             inputFields[i].interactable = true;
+        }
+    }
+
+    public void Play()
+    {
+        entryPanel.transform.DOMoveX(entryPanelShowPosX, entryPanelDuration);
+        mainCamera.transform.DOMoveX(rightX, playDuration).SetEase(Ease.OutBack);
+    }
+
+    public void Playing()
+    {
+        entryPanel.transform.DOMoveX(entryPanelHidePosX, entryPanelDuration);
+        mainCamera.transform.DOMoveX(leftX, playDuration).SetEase(Ease.OutBack);
+    }
+    public void SetWinnerData(char ch, Sprite img, string text)
+    {
+        if (ch == 't')
+        {
+            winnerText.text = text;
+            winnerImage.gameObject.SetActive(false);
+        }
+        else
+        {
+            winnerImage.sprite = img;
+            winnerText.text = "";
         }
     }
 }

@@ -53,6 +53,7 @@ public class Spawner : MonoBehaviour
                 PlayButton.interactable = false;
                 buttonText.text = "Playing";
                 GameManager.instance.DisableComponents();
+                GameManager.instance.Playing();
 
         // }
         //}
@@ -79,6 +80,7 @@ public class Spawner : MonoBehaviour
     public void CloseWin()
     {
         GameManager.instance.HideWin();
+        GameManager.instance.Play();
     }
 
  

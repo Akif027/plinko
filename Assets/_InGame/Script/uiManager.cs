@@ -8,8 +8,8 @@ using TMPro; // Using TextMeshPro for better text in Unity
 public class uiManager : MonoBehaviour
 {
     // UI Components
-    private TMP_InputField Text;
-    private Image Image;
+    public TMP_InputField Text;
+    public Image Image;
 
     // Data list
     private List<string> NameData = new List<string>();
@@ -23,7 +23,9 @@ public class uiManager : MonoBehaviour
         // Get children objects and their components
         Transform child = transform.GetChild(1);
         Text = child.GetChild(0).GetComponent<TMP_InputField>();
-        Image = child.GetChild(1).transform.GetChild(0).GetComponent<Image>();
+        Image = child.GetChild(1).GetChild(0).GetComponent<Image>();
+        BetBasketL.GetComponent<Basket>().choice = 't';
+        BetBasketR.GetComponent<Basket>().choice = 't';
 
         // Initially set the image to inactive
         Image.gameObject.SetActive(false);
@@ -35,9 +37,13 @@ public class uiManager : MonoBehaviour
         switch (val)
         {
             case 0:
+                BetBasketL.GetComponent<Basket>().choice = 't';
+                BetBasketR.GetComponent<Basket>().choice = 't';
                 HandleText();
                 break;
             case 1:
+                BetBasketL.GetComponent<Basket>().choice = 'i';
+                BetBasketR.GetComponent<Basket>().choice = 'i';
                 HandleImage();
                 Debug.Log("image select");
                 break;
@@ -52,19 +58,21 @@ public class uiManager : MonoBehaviour
     {
         BetBasketL.gameObject.name = Text.text;
         BetBasketR.gameObject.name = Text.text;
+        BetBasketL.GetComponent<Basket>().txt = Text.text;
+        BetBasketR.GetComponent<Basket>().txt = Text.text;
     }
 
     // Display text and hide image
     private void HandleText()
     {
-        Image.gameObject.SetActive(false);
+        Image.transform.parent.gameObject.SetActive(true);
         Text.gameObject.SetActive(true);
     }
 
     // Display image and hide text
     private void HandleImage()
     {
-        Image.gameObject.SetActive(true);
+        Image.transform.parent.gameObject.SetActive(true);
         Text.gameObject.SetActive(false);
         SelectImage();
     }
@@ -92,6 +100,8 @@ public class uiManager : MonoBehaviour
             {
                 Sprite sprite = Sprite.Create(tex, new Rect(0, 0, tex.width, tex.height), Vector2.zero);
                 Image.sprite = sprite;
+                BetBasketL.GetComponent<Basket>().img = sprite;
+                BetBasketR.GetComponent<Basket>().img = sprite;
             }
             else
             {

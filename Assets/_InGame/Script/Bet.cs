@@ -7,6 +7,7 @@ using UnityEngine.XR;
 public class Bet : MonoBehaviour
 {
     private int ColCount =0;
+    public Basket basket;
     private void Start()
     {
         gameObject.SetActive(true);
@@ -20,6 +21,8 @@ public class Bet : MonoBehaviour
             if (ColCount <=1)
             {
                 GetTheName(collision.gameObject.name);
+                basket  = collision.gameObject.GetComponent<Basket>();
+                GameManager.instance.SetWinnerData(basket.choice,basket.img,basket.txt);
                 /*if (AmountManager.instance.CurrentAmount <= 0)
                 {
                     AmountManager.instance.Broke = true;
@@ -39,6 +42,7 @@ public class Bet : MonoBehaviour
     private void GetTheName(string Name)
     {
         Debug.Log(Name);
+
         Spawner.instance.ButtonInteractable();
     }
 }
