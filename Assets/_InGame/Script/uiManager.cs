@@ -65,6 +65,7 @@ public class uiManager : MonoBehaviour
     // Display text and hide image
     private void HandleText()
     {
+        AudioManager.instance.Play("Click");
         Image.transform.parent.gameObject.SetActive(true);
         Text.gameObject.SetActive(true);
     }
@@ -72,6 +73,7 @@ public class uiManager : MonoBehaviour
     // Display image and hide text
     private void HandleImage()
     {
+        AudioManager.instance.Play("Click");
         Image.transform.parent.gameObject.SetActive(true);
         Text.gameObject.SetActive(false);
         SelectImage();
