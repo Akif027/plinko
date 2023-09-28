@@ -38,8 +38,6 @@ public class Bet : MonoBehaviour
     }*/
     private void GetTheName(string Name)
     {
-        double myInt = double.Parse(Name);
-        Debug.Log(myInt);
-       
+        Debug.Log(Name);  
     }
 }
