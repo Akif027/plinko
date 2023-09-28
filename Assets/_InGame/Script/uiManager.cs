@@ -28,7 +28,7 @@ public class uiManager : MonoBehaviour
         BetBasketR.GetComponent<Basket>().choice = 't';
 
         // Initially set the image to inactive
-        Image.gameObject.SetActive(false);
+        Image.transform.parent.gameObject.SetActive(false);
     }
 
     // Handles adding image and text

@@ -21,7 +21,6 @@ public class GameManager : MonoBehaviour
 
     [Header("Buttons")]
     public Button[] buttons;
-    public TMP_Dropdown[] dropdowns;
     public TMP_InputField[] inputFields;
 
     [Header("Win Objects")]
@@ -124,7 +123,7 @@ public class GameManager : MonoBehaviour
         for(int i = 0; i < buttons.Length; i++)
         {
             buttons[i].interactable = false;
-            dropdowns[i].interactable = false;
+           
             inputFields[i].interactable = false;
         }
     }
@@ -134,7 +133,7 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < buttons.Length; i++)
         {
             buttons[i].interactable = true;
-            dropdowns[i].interactable = true;
+            
             inputFields[i].interactable = true;
         }
     }
