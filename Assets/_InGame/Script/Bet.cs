@@ -38,6 +38,7 @@ public class Bet : MonoBehaviour
     }*/
     private void GetTheName(string Name)
     {
-        Debug.Log(Name);  
+        Debug.Log(Name);
+        Spawner.instance.ButtonInteractable();
     }
 }

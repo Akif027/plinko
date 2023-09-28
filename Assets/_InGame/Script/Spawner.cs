@@ -1,10 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Spawner : MonoBehaviour
 {
+    public static Spawner instance;
+
+    private void Awake()
+    {
+       instance = this;
+    }
+
     public GameObject BallBasketPrefab;
    // private ShapeGenrator shapeGenrator;
     public float DesiredXpos = 1.89f;
@@ -18,6 +26,7 @@ public class Spawner : MonoBehaviour
     //public Toggle Auto, Manual;
 
     public Button PlayButton;
+    public TMP_Text buttonText;
 
    
     public void StartSpawning()
@@ -42,29 +51,44 @@ public class Spawner : MonoBehaviour
                     projectile.transform.SetParent(transform);
                 }
                 PlayButton.interactable = false;
-                StartCoroutine(SpawnManualCoroutine());
-           // }
+                buttonText.text = "Playing";
+                GameManager.instance.DisableComponents();
+
+        // }
         //}
 
-      /*  if (AmountManager.instance.Broke)
-        {
-            PlayButton.interactable = false;
-        }
-        else
-        {
-            PlayButton.interactable = true;
-        }*/
+        /*  if (AmountManager.instance.Broke)
+          {
+              PlayButton.interactable = false;
+          }
+          else
+          {
+              PlayButton.interactable = true;
+          }*/
 
     }
 
+    public void ButtonInteractable()
+    {
+        buttonText.text = "Play";
+        PlayButton.interactable = true;
+        GameManager.instance.ShowWin();
+        GameManager.instance.EnableComponents();
+    }
+
+    public void CloseWin()
+    {
+        GameManager.instance.HideWin();
+    }
+
  
-    private IEnumerator SpawnManualCoroutine()
+   /* private IEnumerator SpawnManualCoroutine()
     {
      
             yield return new WaitForSeconds(spawnInterval);
         PlayButton.interactable = true;
 
-    }
+    }*/
    /* private IEnumerator SpawnCoroutine()
     {
      

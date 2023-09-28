@@ -2,13 +2,29 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using DG.Tweening;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
     // Start is called before the first frame update
     public static GameManager instance;
+
+    public ShapeGenrator sg;
+
+    [Header("Buttons")]
+    public Button[] buttons;
+    public TMP_Dropdown[] dropdowns;
+    public TMP_InputField[] inputFields;
+
+    [Header("Win Objects")]
+    public GameObject winnerPanel;
+    public GameObject winnerWindows;
+    public Vector3 punchScaleAmount = new Vector3(0.1f, 0.1f, 0.1f); // Amount to "punch" the scale by
+    public float winDuration = 0.5f; // Duration of the punch animation
+    public GameObject mainCamera;
 
     [Header("ButtonClick")]
     public Vector3 _intialScale;
@@ -36,7 +52,8 @@ public class GameManager : MonoBehaviour
     }
     void Start()
     {
-        
+        mainCamera.SetActive(true);
+        sg.Generate();
     }
 
     // Update is called once per frame
@@ -77,6 +94,43 @@ public class GameManager : MonoBehaviour
         });
     }
 
+    public void ShowWin()
+    {
+        mainCamera.SetActive(false);
+        winnerPanel.SetActive(true);
+        winnerWindows.transform.DOPunchScale(punchScaleAmount, winDuration);
+    }
+
+    public void HideWin()
+    {
+        winnerPanel.SetActive(false);
+        mainCamera.SetActive(true);
+    }
+
+    public void Reset()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void DisableComponents()
+    {
+        for(int i = 0; i < buttons.Length; i++)
+        {
+            buttons[i].interactable = false;
+            dropdowns[i].interactable = false;
+            inputFields[i].interactable = false;
+        }
+    }
+
+    public void EnableComponents()
+    {
+        for (int i = 0; i < buttons.Length; i++)
+        {
+            buttons[i].interactable = true;
+            dropdowns[i].interactable = true;
+            inputFields[i].interactable = true;
+        }
+    }
 }
 
 [Serializable]

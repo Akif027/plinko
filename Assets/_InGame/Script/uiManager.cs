@@ -23,7 +23,7 @@ public class uiManager : MonoBehaviour
         // Get children objects and their components
         Transform child = transform.GetChild(1);
         Text = child.GetChild(0).GetComponent<TMP_InputField>();
-        Image = child.GetChild(1).GetComponent<Image>();
+        Image = child.GetChild(1).transform.GetChild(0).GetComponent<Image>();
 
         // Initially set the image to inactive
         Image.gameObject.SetActive(false);

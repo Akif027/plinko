@@ -9,13 +9,13 @@ public class ShapeGenrator : MonoBehaviour
     public float triangleSize = 1.0f;
     public float spacing = 0.1f; 
     [SerializeField] Vector3 desiredPosition = Vector3.zero;
-    private void Start()
+
+    public void Generate()
     {
         CreateTrianglePattern();
         PositionPattern();
     }
-
-    void CreateTrianglePattern()
+    public void CreateTrianglePattern()
     {
         float halfWidth = rowCount * (triangleSize * 0.5f + spacing * 0.5f);
         float height = Mathf.Sqrt(3) * triangleSize;
@@ -36,7 +36,7 @@ public class ShapeGenrator : MonoBehaviour
     }
 
 
-    void PositionPattern()
+    public void PositionPattern()
     {
         Vector3 screenPoint = Camera.main.WorldToScreenPoint(desiredPosition);
         Vector3 worldPoint = Camera.main.ScreenToWorldPoint(screenPoint);
