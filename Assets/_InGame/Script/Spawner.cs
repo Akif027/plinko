@@ -79,6 +79,7 @@ public class Spawner : MonoBehaviour
 
     public void CloseWin()
     {
+        AudioManager.instance.Play("Click");
         GameManager.instance.HideWin();
         GameManager.instance.Play();
     }
