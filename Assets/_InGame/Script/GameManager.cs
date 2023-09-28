@@ -76,9 +76,14 @@ public class GameManager : MonoBehaviour
             colorBoxes[colourId].SetColour(fcp.color);
         }
     }
+    public void OntextFieldClick(string Audio)
+    {
+        AudioManager.instance.Play("Click");
+    }
 
     public void SetColour(int id)
     {
+        AudioManager.instance.Play("Click");
         colourId = id;
         fcp.color = colorBoxes[id].buttonImage.color;
         entryPanel.transform.DOMoveX(entryPanelHidePosX, entryPanelDuration);
@@ -88,6 +93,7 @@ public class GameManager : MonoBehaviour
 
     public void CloseColourPicker()
     {
+        AudioManager.instance.Play("Click");
         isColorEdit = false;
         entryPanel.transform.DOMoveX(entryPanelShowPosX, entryPanelDuration);
         colourPicker.transform.DOMoveX(HidePosX, duration);
@@ -95,6 +101,7 @@ public class GameManager : MonoBehaviour
 
     public void Click(GameObject obj)
     {
+        AudioManager.instance.Play("Click");
         obj.transform.DOScale(_intialScale * clickScale, clickDuration).OnComplete(() =>
         {
             obj.transform.DOScale(_intialScale, clickDuration);
@@ -103,6 +110,7 @@ public class GameManager : MonoBehaviour
 
     public void ShowWin()
     {
+        AudioManager.instance.Play("Win");
         mainCamera.SetActive(false);
         winnerPanel.SetActive(true);
         winnerWindows.transform.DOPunchScale(punchScaleAmount, winDuration);
@@ -116,6 +124,7 @@ public class GameManager : MonoBehaviour
 
     public void Reset()
     {
+        AudioManager.instance.Play("Click");
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 

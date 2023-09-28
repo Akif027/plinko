@@ -52,3 +52,10 @@ MonoBehaviour:
     volume: 0.8
     loop: 0
     source: {fileID: 0}
+  - name: Win
+    clip: {fileID: 8300000, guid: c837892bacbfa6f42bd126edb3d93564, type: 3}
+    mixer: {fileID: 0}
+    pitch: 1
+    volume: 0.8
+    loop: 0
+    source: {fileID: 0}
