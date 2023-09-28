@@ -10,6 +10,17 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     public static GameManager instance;
 
+    [Header("ButtonClick")]
+    public Vector3 _intialScale;
+    public float clickDuration = 0.1f;
+    public float clickScale = 0.9f;
+
+    [Header("Entry")]
+    public GameObject entryPanel;
+    public float entryPanelShowPosX;
+    public float entryPanelHidePosX;
+    public float entryPanelDuration;
+
     [Header("Color")]
     int colourId;
     public FlexibleColorPicker fcp;
@@ -44,16 +55,26 @@ public class GameManager : MonoBehaviour
 
     public void SetColour(int id)
     {
-        fcp.color = colorBoxes[id].buttonImage.color;
-        isColorEdit = true;
         colourId = id;
+        fcp.color = colorBoxes[id].buttonImage.color;
+        entryPanel.transform.DOMoveX(entryPanelHidePosX, entryPanelDuration);
         colourPicker.transform.DOMoveX(ShowPosX, duration).SetEase(Ease.OutBack);
+        isColorEdit = true;
     }
 
     public void CloseColourPicker()
     {
         isColorEdit = false;
+        entryPanel.transform.DOMoveX(entryPanelShowPosX, entryPanelDuration);
         colourPicker.transform.DOMoveX(HidePosX, duration);
+    }
+
+    public void Click(GameObject obj)
+    {
+        obj.transform.DOScale(_intialScale * clickScale, clickDuration).OnComplete(() =>
+        {
+            obj.transform.DOScale(_intialScale, clickDuration);
+        });
     }
 
 }
